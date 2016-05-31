@@ -30,19 +30,16 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class GUIBJS extends JApplet {
 	public String urkunde;
 	public static String sname;
-	
-	
-	
-	
+
 	private static final long serialVersionUID = 1L;
 	// Anfang Attribute
-	
+
 	private DefaultComboBoxModel<String> jComboBox1Model = new DefaultComboBoxModel<String>();
 	private JComboBox<String> jComboBox1 = new JComboBox<String>(jComboBox1Model);
-	
+
 	private DefaultComboBoxModel<String> jComboBox2Model = new DefaultComboBoxModel<String>();
 	private JComboBox<String> jComboBox2 = new JComboBox<String>(jComboBox2Model);
-	
+
 	private JLabel jLabel1 = new JLabel();
 	private JLabel jLabel2 = new JLabel();
 	private JLabel jLabel3 = new JLabel();
@@ -57,24 +54,24 @@ public class GUIBJS extends JApplet {
 	private JLabel jLabel13 = new JLabel();
 	private JLabel jLabel14 = new JLabel();
 	private JLabel jLabel15 = new JLabel();
-	
+
 	private JTextField jTextField1 = new JTextField();
 	private JTextField jTextField2 = new JTextField();
 	private JTextField jTextField3 = new JTextField();
 	private JTextField jTextField5 = new JTextField();
 	private JTextField jTextField6 = new JTextField();
 	private JTextField jTextField8 = new JTextField();
-	
+
 	private JButton jButton1 = new JButton();
 	private JButton jButton2 = new JButton();
 	private JButton jButton3 = new JButton();
 	private JButton jButton4 = new JButton();
 	private JButton jButton5 = new JButton();
-	
+
 	private JSeparator jSeparator1 = new JSeparator();
 	private JSeparator jSeparator2 = new JSeparator();
 	private JSeparator jSeparator3 = new JSeparator();
-	
+
 	// Ende Attribute
 
 	public GUIBJS() {
@@ -90,11 +87,11 @@ public class GUIBJS extends JApplet {
 		jComboBox1.setModel(jComboBox1Model);
 		jComboBox1.setBounds(168, 104, 89, 25);
 		cp.add(jComboBox1);
-		
+
 		jComboBox2.setModel(jComboBox2Model);
 		jComboBox2.setBounds(168, 144, 209, 25);
 		cp.add(jComboBox2);
-		
+
 		jLabel1.setBounds(24, 16, 634, 28);
 		jLabel1.setText("Bundesjugendspiele Auswertung der Blüchergrundschule in Wiesbaden");
 		jLabel1.setFont(new Font("Dialog", Font.BOLD, 18));
@@ -152,11 +149,11 @@ public class GUIBJS extends JApplet {
 		jLabel14.setOpaque(false);
 		jLabel14.setFont(new Font("Dialog", Font.BOLD, 16));
 		cp.add(jLabel14);
-		
+
 		jLabel15.setBounds(576, 304, 97, 40);
 		jLabel15.setEnabled(true);
 		cp.add(jLabel15);
-		
+
 		jTextField1.setBounds(448, 264, 62, 20);
 		jTextField1.setEditable(false);
 		cp.add(jTextField1);
@@ -177,7 +174,7 @@ public class GUIBJS extends JApplet {
 
 		jTextField8.setBounds(192, 344, 62, 20);
 		cp.add(jTextField8);
-		
+
 		jButton1.setBounds(728, 328, 153, 49);
 		jButton1.setText("Auswerten der Urkunde");
 		jButton1.setMargin(new Insets(2, 2, 2, 2));
@@ -189,7 +186,7 @@ public class GUIBJS extends JApplet {
 		jButton1.setBackground(new Color(0xEEEEEE));
 		jButton1.setForeground(Color.GREEN);
 		cp.add(jButton1);
-		
+
 		jButton2.setBounds(728, 256, 153, 49);
 		jButton2.setText("Punktzahl berechnen ");
 		jButton2.setMargin(new Insets(2, 2, 2, 2));
@@ -200,7 +197,7 @@ public class GUIBJS extends JApplet {
 		});
 		jButton2.setForeground(Color.GREEN);
 		cp.add(jButton2);
-		
+
 		jButton3.setBounds(344, 264, 65, 25);
 		jButton3.setText("Löschen");
 		jButton3.setMargin(new Insets(2, 2, 2, 2));
@@ -267,29 +264,28 @@ public class GUIBJS extends JApplet {
 	}
 
 	public void jButton1_ActionPerformed(ActionEvent evt) {
-//		JOptionPane.showMessageDialog(null, "Der/Die Schüler/in erhält eine " + urkunde + ".", "Urkundentyp",
-//				JOptionPane.PLAIN_MESSAGE);
+		// JOptionPane.showMessageDialog(null, "Der/Die Schüler/in erhält eine "
+		// + urkunde + ".", "Urkundentyp",
+		// JOptionPane.PLAIN_MESSAGE);
 		Document doc = new Document();
 		try {
 			PdfWriter.getInstance(doc, new FileOutputStream("Report.pdf"));
 			doc.open();
 			doc.add(new Paragraph(jLabel15.getText().toString()));
 			doc.close();
-						
-			try {
-			     if (Desktop.isDesktopSupported()) {
-			       Desktop.getDesktop().open(new File("D:\\Schule\\Eclipse\\Blücherschule\\bin\\Report.pdf"));
 
-			     }
-			   } catch (IOException ioe) {
-			     ioe.printStackTrace();
-			  }
+			try {
+				if (Desktop.isDesktopSupported()) {
+					Desktop.getDesktop().open(new File("D:\\Schule\\Eclipse\\Blücherschule\\bin\\Report.pdf"));
+
+				}
+			} catch (IOException ioe) {
+				ioe.printStackTrace();
+			}
 		} catch (FileNotFoundException | DocumentException e) {
 			e.printStackTrace();
 		}
-		
-		
-		
+
 	}
 
 	public void jButton2_ActionPerformed(ActionEvent evt) {
@@ -306,27 +302,25 @@ public class GUIBJS extends JApplet {
 			int age = Calendar.getInstance().get(Calendar.YEAR) - year;
 
 			double sekundenSprint, wurfDistanz, punkteSprint, sprungDistanz, punkteSprung, punkteWurf;
-			
+
 			sekundenSprint = Double.parseDouble(jTextField5.getText());
 			sprungDistanz = Double.parseDouble(jTextField8.getText());
 			wurfDistanz = Double.parseDouble(jTextField6.getText());
-			
-			double[] werte = Berechnung.berechnung(sekundenSprint,sprungDistanz,wurfDistanz,gJunge);
-			
-			punkteSprint = werte[0];  
+
+			double[] werte = Berechnung.berechnung(sekundenSprint, sprungDistanz, wurfDistanz, gJunge);
+
+			punkteSprint = werte[0];
 			punkteSprung = werte[1];
 			punkteWurf = werte[2];
-			
+
 			long longValue = Math.round(punkteSprint) + Math.round(punkteSprung) + Math.round(punkteWurf);
 			int punkteGes = (int) longValue;
-			
+
 			jTextField1.setText(String.valueOf(Math.round(punkteSprint)));
 			jTextField3.setText(String.valueOf(Math.round(punkteSprung)));
 			jTextField2.setText(String.valueOf(Math.round(punkteWurf)));
-			
+
 			jLabel15.setText("Punkte: " + punkteGes);
-			
-			
 
 			if (gJunge == true) {
 				if (age == 8) {

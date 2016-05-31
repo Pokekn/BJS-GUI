@@ -1,3 +1,4 @@
+
 //import java.sql.Array;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -5,18 +6,17 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class SQL_Abfragen {
-	
+
 	public static int jahrgang;
 	public static int geschlecht;
 	public static String name;
 	static SQL_Abfragen abfrage1;
 
 	public static int SQL_Abfrage() throws ClassNotFoundException {
-		
+
 		GUIBJS.sname = "Huth";
 		String schuelername = GUIBJS.sname;
-		
-		
+
 		Class.forName("com.mysql.jdbc.Driver");
 		String url = "jdbc:mysql://10.4.223.209:3306/bjs";
 		String username = "java";
@@ -29,11 +29,11 @@ public class SQL_Abfragen {
 			ResultSet rs = stment.executeQuery(qry);
 
 			while (rs.next()) {
-				name = rs.getString ("Name");
-				//String[] namen = {name};
+				name = rs.getString("Name");
+				// String[] namen = {name};
 				jahrgang = rs.getInt("Jahrgang");
 				geschlecht = rs.getInt("Geschlecht");
-				
+
 			}
 
 		} catch (SQLException e) {
